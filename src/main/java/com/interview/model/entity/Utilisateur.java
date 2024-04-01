@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,4 +40,7 @@ private Profile profile;
 		CascadeType.MERGE
 })
 private List<Test> tests;
+@OneToMany(mappedBy = "emetteur")
+private List<Candidature> candidatures;
+
 }
