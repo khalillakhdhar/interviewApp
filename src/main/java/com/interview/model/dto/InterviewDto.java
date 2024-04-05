@@ -16,6 +16,5 @@ public class InterviewDto {
 	private String url;
 	@NotBlank
 	private Offre offre;
-	@NotBlank
 	private Utilisateur participant;
 }

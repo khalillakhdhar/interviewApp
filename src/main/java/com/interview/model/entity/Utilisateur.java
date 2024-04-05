@@ -2,6 +2,9 @@ package com.interview.model.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,6 +44,14 @@ private Profile profile;
 })
 private List<Test> tests;
 @OneToMany(mappedBy = "emetteur")
+@JsonIgnoreProperties("emetteur")
 private List<Candidature> candidatures;
+@OneToMany(mappedBy = "emetteur")
+@JsonIgnoreProperties("emetteur")
+private List<Message> envoyees;
+@OneToMany(mappedBy = "recepteur")
+@JsonIgnoreProperties("recepteur")
+private List<Message> recus;
+
 
 }

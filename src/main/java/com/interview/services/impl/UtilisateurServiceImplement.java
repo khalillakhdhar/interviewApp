@@ -2,12 +2,17 @@ package com.interview.services.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.interview.model.dto.ProfileDto;
 import com.interview.model.dto.UtilisateurDto;
 import com.interview.model.entity.Profile;
 import com.interview.model.entity.Utilisateur;
+import com.interview.model.mappers.ProfileMapper;
+import com.interview.model.mappers.UtilisateurMapper;
 import com.interview.repositories.ProfilRepository;
 import com.interview.repositories.UtilisateurRepository;
 import com.interview.services.UtilisateurService;
@@ -23,21 +28,28 @@ public class UtilisateurServiceImplement implements UtilisateurService {
 	
 	
 	@Override
-	public Utilisateur addOneUtilisateur(Utilisateur utilisateurDto) {
+	public UtilisateurDto addOneUtilisateur(UtilisateurDto utilisateurDto) {
 		// TODO Auto-generated method stub
-		return utilisateurRepository.save(utilisateurDto);
+		Utilisateur us= utilisateurRepository.save(UtilisateurMapper.convertToEntity(utilisateurDto));
+		
+		return utilisateurDto;
 	}
 
 	@Override
-	public List<Utilisateur> getAllUtilisateur() {
+	public List<UtilisateurDto> getAllUtilisateur() {
 		// TODO Auto-generated method stub
-		return utilisateurRepository.findAll();
+		
+		return utilisateurRepository.findAll().stream().map(UtilisateurMapper::convertToDTO)
+				.collect(Collectors.toList());
+		/*
+		 * 
+		 */
 	}
 
 	@Override
-	public Optional<Utilisateur> getOneUtilisateur(long id) {
+	public Optional<UtilisateurDto> getOneUtilisateur(long id) {
 		// TODO Auto-generated method stub
-		return utilisateurRepository.findById(id);
+		return utilisateurRepository.findById(id).map(UtilisateurMapper::convertToDTO);
 	}
 
 	@Override
@@ -48,14 +60,14 @@ public class UtilisateurServiceImplement implements UtilisateurService {
 	}
 
 	@Override
-	public Profile assignProfileToUtilisateur(long idUser, Profile profile) {
+	public ProfileDto assignProfileToUtilisateur(long idUser, Profile profile) {
 		// TODO Auto-generated method stub
 		if(utilisateurRepository.existsById(idUser))
 		{
 			Utilisateur utilisateur=utilisateurRepository.findById(idUser).get();
 			utilisateur.setProfile(profile);
 			utilisateurRepository.save(utilisateur);
-			return profile;
+			return ProfileMapper.convertToDTO(profile);
 		}
 			
 		
