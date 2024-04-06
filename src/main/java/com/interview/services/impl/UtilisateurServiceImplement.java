@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.interview.model.dto.ProfileDto;
@@ -36,15 +38,12 @@ public class UtilisateurServiceImplement implements UtilisateurService {
 	}
 
 	@Override
-	public List<UtilisateurDto> getAllUtilisateur() {
-		// TODO Auto-generated method stub
-		
-		return utilisateurRepository.findAll().stream().map(UtilisateurMapper::convertToDTO)
-				.collect(Collectors.toList());
-		/*
-		 * 
-		 */
+	public Page<UtilisateurDto> getAllUtilisateur(Pageable pageable) {
+	    Page<Utilisateur> utilisateurs = utilisateurRepository.findAll(pageable);
+	    
+	    return utilisateurs.map(UtilisateurMapper::convertToDTO);
 	}
+
 
 	@Override
 	public Optional<UtilisateurDto> getOneUtilisateur(long id) {
