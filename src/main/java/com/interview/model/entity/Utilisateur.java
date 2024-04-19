@@ -37,6 +37,8 @@ private String mdp;
 @Enumerated(EnumType.STRING)
 private Grades grade;
 @OneToOne(mappedBy = "utilisateur")
+@JsonIgnoreProperties("utilisateur")
+
 private Profile profile;
 @ManyToMany(cascade = {
 		CascadeType.PERSIST,

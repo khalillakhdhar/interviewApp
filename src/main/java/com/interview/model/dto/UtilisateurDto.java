@@ -2,6 +2,7 @@ package com.interview.model.dto;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.interview.model.entity.Grades;
 
 import jakarta.validation.constraints.Email;
@@ -11,7 +12,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 @Data
-public class UtilisateurDto {
+public class UtilisateurDto  extends BaseDTO{
 	@NotBlank
 	private String nom;
 	@NotBlank
@@ -28,7 +29,11 @@ public class UtilisateurDto {
 	private String mdp;
 	
 	private Grades grade;
+	@JsonIgnoreProperties("utilisateur")
+
 	private ProfileDto profile;
+	@JsonIgnoreProperties("utilisateurs")
+
 	private List<TestDto> tests;
 
 }

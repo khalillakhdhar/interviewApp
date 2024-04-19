@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class InterviewDto {
+public class InterviewDto  extends BaseDTO{
 	@NotBlank
 	private String dateHeure;
 	@NotBlank

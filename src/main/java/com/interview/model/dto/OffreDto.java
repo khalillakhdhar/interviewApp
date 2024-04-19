@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 @Data
-public class OffreDto {
+public class OffreDto extends BaseDTO {
 	@NotBlank
 	private String titre;
 	@NotBlank

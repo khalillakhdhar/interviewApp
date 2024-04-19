@@ -9,7 +9,6 @@ import lombok.Data;
 
 @Data
 public class ProfileDto {
-	@Positive
 	private long id;
 	@NotBlank
 	private String curriculum;

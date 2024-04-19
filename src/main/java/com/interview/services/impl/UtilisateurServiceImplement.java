@@ -61,13 +61,15 @@ public class UtilisateurServiceImplement implements UtilisateurService {
 	@Override
 	public ProfileDto assignProfileToUtilisateur(long idUser, Profile profile) {
 		// TODO Auto-generated method stub
-		if(utilisateurRepository.existsById(idUser))
-		{
-			Utilisateur utilisateur=utilisateurRepository.findById(idUser).get();
+		
+			Utilisateur utilisateur=utilisateurRepository.findById(idUser).orElse(null);
+			if(utilisateur!=null)
+			{
 			utilisateur.setProfile(profile);
+			
 			utilisateurRepository.save(utilisateur);
 			return ProfileMapper.convertToDTO(profile);
-		}
+			}
 			
 		
 		
