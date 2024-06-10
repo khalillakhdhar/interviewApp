@@ -15,6 +15,7 @@ public Page<UtilisateurDto> getAllUtilisateur(Pageable pageable );
 public Optional<UtilisateurDto> getOneUtilisateur(long id);
 public void deleteOneUtilisateur(long id);
 public ProfileDto assignProfileToUtilisateur(long idUser,Profile ProfileDto);
+public UtilisateurDto findByEmail(String email);
 
 
 }

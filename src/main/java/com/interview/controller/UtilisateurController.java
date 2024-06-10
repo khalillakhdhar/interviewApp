@@ -52,6 +52,11 @@ public class UtilisateurController {
 		return ResponseEntity.ok(utilisateurService.assignProfileToUtilisateur(id, ProfileMapper.convertToEntity(profile)));
 		
 	}
+	@GetMapping("/email/{email}")
+	public ResponseEntity<UtilisateurDto> getByEmail(@PathVariable String email)
+	{
+		return ResponseEntity.ok(utilisateurService.findByEmail(email));
+	}
 	
 	
 	

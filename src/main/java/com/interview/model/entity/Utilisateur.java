@@ -54,6 +54,9 @@ private List<Message> envoyees;
 @OneToMany(mappedBy = "recepteur")
 @JsonIgnoreProperties("recepteur")
 private List<Message> recus;
+@OneToMany(mappedBy = "recruteur")
+@JsonIgnoreProperties("recruteur")
+private List<Offre> offres;
 
 
 }

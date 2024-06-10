@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.interview.model.entity.Grades;
+import com.interview.model.entity.Offre;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
@@ -35,5 +36,6 @@ public class UtilisateurDto  extends BaseDTO{
 	@JsonIgnoreProperties("utilisateurs")
 
 	private List<TestDto> tests;
-
+	@JsonIgnoreProperties("recruteur")
+	private List<OffreDto> offres;
 }

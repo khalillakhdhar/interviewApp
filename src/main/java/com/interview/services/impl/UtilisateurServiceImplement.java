@@ -76,4 +76,10 @@ public class UtilisateurServiceImplement implements UtilisateurService {
 		return null;
 	}
 
+	@Override
+	public UtilisateurDto findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return UtilisateurMapper.convertToDTO(utilisateurRepository.findByEmail(email));
+	}
+
 }
